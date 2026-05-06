@@ -1,0 +1,24 @@
+UNINSTALL I2P ENTIRELY FROM SYSTEM
+
+# Stop the service if running, ignore error if already stopped
+sudo systemctl stop i2p || true
+
+# Remove the I2P package and auto-remove unused dependencies
+# (Removed 'i2p-keyring' and 'software-properties-common' to prevent errors/system damage)
+sudo apt-get purge --auto-remove -y i2p
+
+# Remove the repository
+sudo add-apt-repository --remove -y ppa:i2p-maintainers/i2p
+
+# Force delete all configuration, logs, and user data directories
+sudo rm -rf /var/lib/i2p /var/log/i2p /etc/i2p /usr/share/i2p ~/.i2p
+
+# Refresh package list
+sudo apt-get update
+
+echo "I2P has been completely removed."
+
+
+sudo systemctl daemon-reload
+sudo systemctl reset-failed
+
