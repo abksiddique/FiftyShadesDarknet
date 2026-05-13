@@ -1,2 +1,2 @@
 # FiftyShadesDarknet
-Empirical toolkit for I2P router visibility classification (Shade Taxonomy), exclusive network detection, and eepsite attribution. IEEE MILCOM 2026.
+Empirical toolkit for I2P router visibility classification (Shade Taxonomy), exclusive network detection, and eepsite attribution.
