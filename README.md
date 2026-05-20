@@ -287,7 +287,7 @@ If you use this repository, please cite the paper and the dataset:
 `bouabdjs@ucmail.uc.edu`
 
 **MIRAGe-UC** — Multi-domain and Information Operations, Resilience and Anonymity Groupe
-School of Information Technology, University of Cincinnati, OH 45221, USA | mirage-uc.org
+School of Information Technology, University of Cincinnati, OH 45221, USA | [mirage-uc.org](https://mirage-uc.org/)
 
 ---
 
