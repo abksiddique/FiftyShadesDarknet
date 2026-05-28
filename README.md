@@ -32,9 +32,9 @@ This repository contains all configuration scripts, lookup tools, and supporting
 > **Fifty Shades of Darknet**
 > Siddique Abubakr Muntaka, Jacques Bou Abdo
 > *MIRAGe-UC Lab, School of Information Technology, University of Cincinnati*
-> IEEE MILCOM 2026 — Track 3: Cyber Security and Trusted Computing
+> IEEE MILCOM 2026 - Track 3: Cyber Security and Trusted Computing
 
-The paper introduces and empirically validates the **Exclusive Network**: a structurally distinct sublayer within I2P whose nodes consume routing resources, host operational eepsites, and participate in garlic-encrypted traffic — while publishing **zero RouterInfo records** to the network's distributed database (NetDB). No existing empirical mapping technique can detect or characterise this sublayer. This repository provides the tools that prove it.
+The paper introduces and empirically validates the **Exclusive Network**: a structurally distinct sublayer within I2P whose nodes consume routing resources, host operational eepsites, and participate in garlic-encrypted traffic - while publishing **zero RouterInfo records** to the network's distributed database (NetDB). No existing empirical mapping technique can detect or characterise this sublayer. This repository provides the tools that prove it.
 
 ---
 
@@ -50,7 +50,7 @@ The paper introduces and empirically validates the **Exclusive Network**: a stru
 
 ## What is the Exclusive Network?
 
-Standard I2P measurement research assumes that probing the NetDB — the Kademlia-derived distributed hash table that stores RouterInfo (RI) records — characterises the network. This is wrong.
+Standard I2P measurement research assumes that probing the NetDB - the Kademlia-derived distributed hash table that stores RouterInfo (RI) records - characterises the network. This is wrong.
 
 The NetDB is populated entirely by **voluntary publication**. A router may:
 
@@ -72,7 +72,7 @@ Where:
 - **V₁'** = routers that publish RouterInfo to the NetDB (observable network)
 - **V₂** = the Exclusive Network (structurally absent from every directory)
 
-The bound **ξ = 1 − ρ** (where ρ = |V₁'| / |V₁|) quantifies the inaccessible fraction. It is a hard protocol-design limit — not a calibration problem.
+The bound **ξ = 1 − ρ** (where ρ = |V₁'| / |V₁|) quantifies the inaccessible fraction. It is a hard protocol-design limit - not a calibration problem.
 
 ---
 
@@ -93,7 +93,7 @@ The paper introduces an eight-class visibility taxonomy derived entirely from ob
 
 Where: κ_f = floodfill flag, κ_H = hidden flag, κ_U = firewalled flag, α = address published, ι = introducer present, δ = RouterInfo in NetDB.
 
-**Shade 7** is hard to reach. **Shade 8** is structurally absent from the NetDB — a categorically different condition.
+**Shade 7** is hard to reach. **Shade 8** is structurally absent from the NetDB - a categorically different condition.
 
 ---
 
@@ -103,7 +103,7 @@ Where: κ_f = floodfill flag, κ_H = hidden flag, κ_U = firewalled flag, α = a
   <img src="I2PRouterScripts/Leaseset.jpg" alt="I2P Inbound Tunnel and LeaseSet Architecture" width="80%">
 </p>
 
-The LeaseSet publishes only the **gateway hash G** — the entry point of the inbound tunnel. The Shade 8 hosting endpoint **E** is absent from both the LeaseSet and the NetDB. An adversary who obtains the LeaseSet learns only the gateway, never the host.
+The LeaseSet publishes only the **gateway hash G** - the entry point of the inbound tunnel. The Shade 8 hosting endpoint **E** is absent from both the LeaseSet and the NetDB. An adversary who obtains the LeaseSet learns only the gateway, never the host.
 
 ---
 
@@ -115,7 +115,7 @@ The empirical validation used three Ubuntu 24.04 LTS nodes running I2P 2.12.0 (A
 |------|------|-------------|--------|
 | **VM1** | Exclusive Host | `PB5dY5gvdEpj...` | `exclusiveStealth-network.sh` |
 | **VM2** | Authorised Partner | `6FRyiaaN...` | `setup-i2p-proxy.sh` |
-| **VM3** | Adversary Scanner | — | `node-lookup.py`, `b32-lookup.py` |
+| **VM3** | Adversary Scanner | - | `node-lookup.py`, `b32-lookup.py` |
 
 VM3 simulates an adversary approaching from **two directions simultaneously**:
 - Knowing the **router hash** but not the b32 eepsite address
@@ -132,8 +132,8 @@ The attribution framework applies five techniques against the target:
 | Method | Approach | Applied By |
 |--------|----------|------------|
 | **A** | b32 Derivation from `eepPriv.dat` | VM1 (control) |
-| **B** | Gateway Scan — LeaseSet inspection | VM3 (adversarial) |
-| **C** | XOR Routing Key — floodfill association | VM3 (adversarial) |
+| **B** | Gateway Scan - LeaseSet inspection | VM3 (adversarial) |
+| **C** | XOR Routing Key - floodfill association | VM3 (adversarial) |
 | **D** | Direct NetDB lookup | VM3 (adversarial) |
 | **Console** | I2P console NetDB API query | VM3 (adversarial) |
 
@@ -147,7 +147,7 @@ All five methods return **zero hits** for a Shade 8 node.
   <img src="I2PRouterScripts/nodelookup-Noexclusivedetected2-ii.jpg" alt="Method C XOR Routing Key Output" width="85%">
 </p>
 
-Method C computes the XOR routing key for each known b32 address and identifies the nearest floodfill storage node. For observable Layer 1 routers, this method successfully associates eepsites with their responsible floodfill. For a Shade 8 node, there is no LeaseSet in the NetDB to associate — the method confirms structural absence.
+Method C computes the XOR routing key for each known b32 address and identifies the nearest floodfill storage node. For observable Layer 1 routers, this method successfully associates eepsites with their responsible floodfill. For a Shade 8 node, there is no LeaseSet in the NetDB to associate - the method confirms structural absence.
 
 ---
 
@@ -214,9 +214,9 @@ Configures the authorised partner (VM2) with SOCKS5 access to the Exclusive Netw
 
 The Exclusive Network is directly exploitable for persistent covert C2 operations. Two documented threat patterns share its structural property:
 
-**I2PRAT (RATatouille)** — Documented I2P-based remote access trojan (Sekoia, Feb. 2025). Implants connect via the SAM bridge (port 7656) to a C2 eepsite hardcoded in the malware binary. When the C2 server is configured as Shade 8, outgoing traffic from compromised hosts is indistinguishable from legitimate I2P participation.
+**I2PRAT (RATatouille)** - Documented I2P-based remote access trojan (Sekoia, Feb. 2025). Implants connect via the SAM bridge (port 7656) to a C2 eepsite hardcoded in the malware binary. When the C2 server is configured as Shade 8, outgoing traffic from compromised hosts is indistinguishable from legitimate I2P participation.
 
-**ORB Networks** — Nation-state Operational Relay Box infrastructure (Mandiant, May 2024) achieves comparable unattributability through jurisdictional dispersion of compromised relay infrastructure. Both instantiate the same mathematical property: G_dark ⊂ G — an operational subgraph contributing to network behaviour while absent from every observable directory.
+**ORB Networks** - Nation-state Operational Relay Box infrastructure (Mandiant, May 2024) achieves comparable unattributability through jurisdictional dispersion of compromised relay infrastructure. Both instantiate the same mathematical property: G_dark ⊂ G - an operational subgraph contributing to network behaviour while absent from every observable directory.
 
 ---
 
@@ -280,24 +280,24 @@ If you use this repository, please cite the paper and the dataset:
 
 ## Authors
 
-**Siddique Abubakr Muntaka** — PhD Candidate, MIRAGe-UC Lab, University of Cincinnati
+**Siddique Abubakr Muntaka** - PhD Candidate, MIRAGe-UC Lab, University of Cincinnati
 `muntaksr@mail.uc.edu`
 
-**Jacques Bou Abdo** — Principal Investigator, MIRAGe-UC Lab, University of Cincinnati
+**Jacques Bou Abdo** - Principal Investigator, MIRAGe-UC Lab, University of Cincinnati
 `bouabdjs@ucmail.uc.edu`
 
-**MIRAGe-UC** — Multi-domain and Information Operations, Resilience and Anonymity Groupe
+**MIRAGe-UC** - Multi-domain and Information Operations, Resilience and Anonymity Groupe
 School of Information Technology, University of Cincinnati, OH 45221, USA | [mirage-uc.org](https://mirage-uc.org/)
 
 ---
 
 ## License
 
-Code: MIT License — see [LICENSE](LICENSE)
+Code: MIT License - see [LICENSE](LICENSE)
 Research figures and paper content: All rights reserved, University of Cincinnati MIRAGe-UC Lab
 
 ---
 
 <p align="center">
-  <i>Invisible Within Invisible — the Exclusive Network exists. This repository proves it.</i>
+  <i>Invisible Within Invisible - the Exclusive Network exists. This repository proves it.</i>
 </p>
