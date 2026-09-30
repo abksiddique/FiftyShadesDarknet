@@ -30,11 +30,11 @@
 This repository contains all configuration scripts, lookup tools, and supporting materials for the paper:
 
 > **Fifty Shades of Darknet**
-> Siddique Abubakr Muntaka, Jacques Bou Abdo
+> Siddique Abubakr Muntaka, Faiza Hussein, Jacques Bou Abdo
 > *MIRAGe-UC Lab, School of Information Technology, University of Cincinnati*
-> IEEE MILCOM 2026 - Track 3: Cyber Security and Trusted Computing
+> IEEE MILCOM 2026 - Workshop WS3: 3rd Workshop on Security, Resilient, and Robustness of Systems and Software
 
-The paper introduces and empirically validates the **Exclusive Network**: a structurally distinct sublayer within I2P whose nodes consume routing resources, host operational eepsites, and participate in garlic-encrypted traffic - while publishing **zero RouterInfo records** to the network's distributed database (NetDB). No existing empirical mapping technique can detect or characterise this sublayer. This repository provides the tools that prove it.
+The paper introduces the **Exclusive Network**: a structurally distinct sublayer within I2P whose nodes consume routing resources, host operational eepsites, and participate in garlic-encrypted traffic - while publishing **zero RouterInfo records** to the network's distributed database (NetDB). This sublayer lies outside every RouterInfo-based mapping technique; its security implications have not previously been characterised. This repository provides the tools that demonstrate it.
 
 ---
 
@@ -44,13 +44,13 @@ The paper introduces and empirically validates the **Exclusive Network**: a stru
   <img src="I2PRouterScripts/nodelookup-exclusivedetected-second_one.jpg" alt="Shade 8 Exclusive Network Node Confirmed" width="85%">
 </p>
 
-> After **500 sequential floodfill probes** from a pool of **1,556 floodfill routers**, applied through **five attribution methods**, router H₁ produced **zero NetDB hits** while its hosted eepsite remained continuously accessible to authorised peers. This is the empirical proof of the Exclusive Network.
+> After **500 sequential floodfill probes** from a pool of **1,536 floodfill routers**, applied through **five attribution methods**, router H₁ produced **zero NetDB hits** while its hosted eepsite remained continuously accessible to authorised peers. This is the empirical demonstration of the Exclusive Network.
 
 ---
 
 ## What is the Exclusive Network?
 
-Standard I2P measurement research assumes that probing the NetDB - the Kademlia-derived distributed hash table that stores RouterInfo (RI) records - characterises the network. This is wrong.
+Standard I2P measurement research assumes that probing the NetDB - the Kademlia-derived distributed hash table that stores RouterInfo (RI) records - characterises the network. This is incomplete.
 
 The NetDB is populated entirely by **voluntary publication**. A router may:
 
@@ -63,9 +63,6 @@ The NetDB is populated entirely by **voluntary publication**. A router may:
 
 We formalise this as:
 
-```
-V₂ = V₁ \ V₁'
-```
 
 Where:
 - **V₁** = all active I2P router endpoints (true network)
@@ -93,7 +90,7 @@ The paper introduces an eight-class visibility taxonomy derived entirely from ob
 
 Where: κ_f = floodfill flag, κ_H = hidden flag, κ_U = firewalled flag, α = address published, ι = introducer present, δ = RouterInfo in NetDB.
 
-**Shade 7** is hard to reach. **Shade 8** is structurally absent from the NetDB - a categorically different condition.
+**Shade 7** is hard to reach. **Shade 8** is structurally absent from the NetDB - a categorically different condition. Hidden mode is the documented mechanism that suppresses RI publication; what distinguishes Shade 8 is its use as an operational service host - the published LeaseSet exposes only a tunnel gateway, never the hosting router.
 
 ---
 
@@ -153,20 +150,6 @@ Method C computes the XOR routing key for each known b32 address and identifies 
 
 ## Repository Structure
 
-```
-FiftyShadesDarknet/
-├── I2PRouterScripts/
-│   ├── exclusiveStealth-network.sh     # Ghost/Exclusive profile deployment
-│   ├── customtld-manager.sh            # Custom TLD routing for eepsites
-│   ├── setup-i2p-proxy.sh              # Authorised partner SOCKS5 config
-│   ├── node-lookup.py                  # Five-method Shade classifier
-│   ├── b32-lookup.py                   # b32-to-router attribution probe
-│   ├── InvisibleInternet.jpg           # Three-layer hierarchy figure
-│   ├── Leaseset.jpg                    # I2P tunnel architecture figure
-│   ├── nodelookup-exclusivedetected-second_one.jpg
-│   └── nodelookup-Noexclusivedetected2-ii.jpg
-└── README.md
-```
 
 ---
 
@@ -224,8 +207,8 @@ The Exclusive Network is directly exploitable for persistent covert C2 operation
 
 | Measurement | Value |
 |-------------|-------|
-| Total RI records in snapshot | 3,242 |
-| Floodfill routers in pool | 1,556 (48.0%) |
+| Total RI records in snapshot | 3,272 |
+| Floodfill routers in pool | 1,536 (46.9%) |
 | Floodfill probes applied to H₁ | 500 |
 | NetDB hits for H₁ (Shade 8) | **0** |
 | Attribution methods applied | 5 |
@@ -243,12 +226,12 @@ If you use this repository, please cite the paper and the dataset:
 **Paper:**
 ```bibtex
 @inproceedings{muntaka2026fiftyshades,
-  author    = {Muntaka, Siddique Abubakr and Bou Abdo, Jacques},
+  author    = {Muntaka, Siddique Abubakr and Hussein, Faiza and Bou Abdo, Jacques},
   title     = {Fifty Shades of Darknet},
-  booktitle = {Proceedings of IEEE Military Communications Conference (MILCOM)},
+  booktitle = {Proceedings of the IEEE Military Communications Conference (MILCOM) Workshops},
   year      = {2026},
   publisher = {IEEE},
-  note      = {Track 3: Cyber Security and Trusted Computing},
+  note      = {Workshop WS3: 3rd Workshop on Security, Resilient, and Robustness of Systems and Software},
   url       = {https://github.com/abksiddique/FiftyShadesDarknet}
 }
 ```
@@ -256,8 +239,8 @@ If you use this repository, please cite the paper and the dataset:
 **Related Dataset (SWARM-I2P):**
 ```bibtex
 @dataset{muntaka2025mapping,
-  author    = {Muntaka, Siddique A. and Bou Abdo, Jacques and Akanbi, Kemi
-               and Oluwadare, Sunkanmi and Hussein, Faiza and Konyo, Oliver
+  author    = {Muntaka, Siddique Abubakr and Bou Abdo, Jacques and Akanbi, Kemi
+               and Oluwadare, Sunkanmi and Hussein, Faiza and Kornyo, Oliver
                and Asante, Michael},
   title     = {Mapping the Invisible Internet: Framework and Dataset},
   year      = {2025},
@@ -283,6 +266,8 @@ If you use this repository, please cite the paper and the dataset:
 **Siddique Abubakr Muntaka** - PhD Candidate, MIRAGe-UC Lab, University of Cincinnati
 `muntaksr@mail.uc.edu`
 
+**Faiza Hussein** - Garden City University College, Kumasi, Ghana
+
 **Jacques Bou Abdo** - Principal Investigator, MIRAGe-UC Lab, University of Cincinnati
 `bouabdjs@ucmail.uc.edu`
 
@@ -299,5 +284,5 @@ Research figures and paper content: All rights reserved, University of Cincinnat
 ---
 
 <p align="center">
-  <i>Invisible Within Invisible - the Exclusive Network exists. This repository proves it.</i>
+  <i>Invisible Within Invisible - the Exclusive Network exists. This repository demonstrates it.</i>
 </p>
